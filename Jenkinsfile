@@ -11,6 +11,7 @@ pipeline {
         stage('Build and Run Container') {
             steps {
                 script {
+                    sh 'docker --version'
                     sh 'docker-compose down || true'  // Stop and remove old containers if they exist
                     sh 'docker-compose up -d --build' // Build and start the container
                 }
