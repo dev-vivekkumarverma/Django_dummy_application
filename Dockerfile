@@ -9,9 +9,10 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /app
 # RUN git clone https://github.com/dev-vivekkumarverma/Django_dummy_application.git
 # Install dependencies
-COPY requirements.txt .
+# COPY requirements.txt .
 # RUN apt-get install tree
-RUN pip install --no-cache-dir -r requirements.txt
+
 COPY . .
+RUN pip install --no-cache-dir -r requirements.txt
 # Run application
 CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
