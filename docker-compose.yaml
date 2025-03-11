@@ -7,7 +7,7 @@ services:
       - "8000:8000"
     restart: on-failure:2
     volumes:
-      - /app:/app
+      - ./app:/app
     networks:
       - cicd_test_jenkins-network
 networks:
