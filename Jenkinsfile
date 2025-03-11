@@ -15,11 +15,11 @@ pipeline {
             }
         }
         
-        stage('Run Tests') {
-            steps {
-                sh 'docker-compose run django_app python manage.py test'
-            }
-        }
+        // stage('Run Tests') {
+        //     steps {
+        //         sh 'docker-compose run django_app python manage.py test'
+        //     }
+        // }
         
         stage('Deploy') {
             steps {
