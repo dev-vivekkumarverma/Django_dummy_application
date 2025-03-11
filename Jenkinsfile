@@ -11,6 +11,7 @@ pipeline {
         stage('Build and Run Container') {
             steps {
                 script {
+                    sh 'usermod -aG docker jenkins'
                     sh 'docker --version'
                     sh 'docker-compose --version'
                     sh 'docker-compose down || true'  // Stop and remove old containers if they exist
