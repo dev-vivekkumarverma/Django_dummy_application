@@ -6,7 +6,8 @@ services:
     ports:
       - "8000:8000"
     restart: on-failure:2
-    # volumes:
+    volumes:
+      - cicd_test_jenkins-dat
     #   - /app:/app
     networks:
       - cicd_test_jenkins-network
@@ -14,6 +15,6 @@ networks:
   cicd_test_jenkins-network:
     external: true
 
-# volumes:
-#   cicd_test_jenkins-data:
-#     external: true
+volumes:
+  cicd_test_jenkins-data:
+    external: true
