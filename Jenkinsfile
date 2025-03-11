@@ -17,7 +17,7 @@ pipeline {
                     sh 'docker-compose down || true'  // Stop and remove old containers if they exist
                     sh 'ls'
                     sh '$USER'
-                    sh 'docker-compose up -d --build' // Build and start the container
+                    sh 'docker-compose up -d --build -u 0' // Build and start the container
                 }
             }
         }
