@@ -11,10 +11,11 @@ pipeline {
         stage('Build and Run Container') {
             steps {
                 script {
-                    sh 'usermod -aG docker jenkins'
+                    // sh 'usermod -aG docker jenkins'
                     sh 'docker --version'
                     sh 'docker-compose --version'
                     sh 'docker-compose down || true'  // Stop and remove old containers if they exist
+                    sh 'ls'
                     sh 'docker-compose up -d --build' // Build and start the container
                 }
             }
