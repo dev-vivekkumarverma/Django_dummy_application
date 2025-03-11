@@ -8,9 +8,9 @@ pipeline {
                 url: 'https://github.com/dev-vivekkumarverma/Django_dummy_application.git'
             }
         }
-        stage('list_all_files') {
-            step {
-                sh 'ls'
+        stage('List Files') {
+            steps {
+                sh 'ls -la'
             }
         }
         stage('Install Dependencies') {
@@ -19,6 +19,7 @@ pipeline {
             }
         }
         
+        // Uncomment if you want to run tests
         // stage('Run Tests') {
         //     steps {
         //         sh 'docker-compose run django_app python manage.py test'
@@ -28,7 +29,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh '''
-                docker-compose down
+                docker-compose down --remove-orphans
                 docker-compose up -d
                 '''
             }
