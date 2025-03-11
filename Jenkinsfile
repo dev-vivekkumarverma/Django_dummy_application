@@ -15,11 +15,11 @@ pipeline {
             }
         }
         
-        stage('Install Dependencies') {
-            steps {
-                sh 'docker-compose build'
-            }
-        }
+        // stage('Install Dependencies') {
+        //     steps {
+        //         sh 'docker-compose build'
+        //     }
+        // }
         
         // Uncomment if you want to run tests before deployment
         // stage('Run Tests') {
@@ -27,12 +27,18 @@ pipeline {
         //         sh 'docker-compose run django_app python manage.py test'
         //     }
         // }
+
+        stage('remove the older container') {
+            steps {
+                sh 'docker-compose down || true'
+            }
+        }
         
-        stage('Deploy') {
+        stage('Build & Deploy') {
             steps {
                 sh '''
-                docker-compose down
-                docker-compose up -d
+                // docker-compose down
+                docker-compose up --build
                 '''
             }
         }
