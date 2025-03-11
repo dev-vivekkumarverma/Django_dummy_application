@@ -8,4 +8,8 @@ services:
     restart: unless-stopped
     volumes:
       - ./:/app
-    
+    networks:
+      - cicd_test_jenkins-network
+networks:
+  cicd_test_jenkins-network:
+    external: true
