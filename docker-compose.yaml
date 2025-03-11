@@ -1,18 +1,11 @@
-version: '3'
+version: '3.8'
 
 services:
   django_app:
     build: .
-    container_name: django_app
-    networks:
-      - cicd_test_jenkins_network
     ports:
       - "8000:8000"
-    environment:
-      - DEBUG=True
+    restart: unless-stopped
     volumes:
-      - .:/app
-
-networks:
-  cicd_test_jenkins_network:
-    external: true
+      - ./:/app
+    
