@@ -10,7 +10,7 @@ WORKDIR /app
 # RUN git clone https://github.com/dev-vivekkumarverma/Django_dummy_application.git
 # Install dependencies
 COPY requirements.txt .
-RUN apt-get install tree
+# RUN apt-get install tree
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 # Run application
