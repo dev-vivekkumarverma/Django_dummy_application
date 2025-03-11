@@ -2,24 +2,38 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Repository') {
+        stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/dev-vivekkumarverma/Django_dummy_application.git'
+                git branch: 'main', 
+                url: 'https://github.com/dev-vivekkumarverma/Django_dummy_application.git'
             }
         }
-
-        stage('Build and Run Container') {
+        
+        stage('Install Dependencies') {
             steps {
-                script {
-                    // sh 'usermod -aG docker jenkins'
-                    sh 'docker --version'
-                    sh 'docker-compose --version'
-                    sh 'docker-compose down || true'  // Stop and remove old containers if they exist
-                    sh 'ls'
-                    sh '$USER'
-                    sh 'sudo docker-compose up -d --build' // Build and start the container
-                }
+                sh 'docker-compose build'
             }
+        }
+        
+        stage('Run Tests') {
+            steps {
+                sh 'docker-compose run django_app python manage.py test'
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                sh '''
+                docker-compose down
+                docker-compose up -d
+                '''
+            }
+        }
+    }
+    
+    post {
+        always {
+            cleanWs()
         }
     }
 }
