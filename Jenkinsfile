@@ -5,21 +5,23 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main', 
-                url: 'https://github.com/dev-vivekkumarverma/Django_dummy_application.git'
+                    url: 'https://github.com/dev-vivekkumarverma/Django_dummy_application.git'
             }
         }
-        stage('List Files') {
+        
+        stage('List All Files') {
             steps {
                 sh 'ls -la'
             }
         }
+        
         stage('Install Dependencies') {
             steps {
                 sh 'docker-compose build'
             }
         }
         
-        // Uncomment if you want to run tests
+        // Uncomment if you want to run tests before deployment
         // stage('Run Tests') {
         //     steps {
         //         sh 'docker-compose run django_app python manage.py test'
@@ -29,7 +31,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh '''
-                docker-compose down --remove-orphans
+                docker-compose down
                 docker-compose up -d
                 '''
             }
