@@ -8,7 +8,7 @@ pipeline {
                 url: 'https://github.com/dev-vivekkumarverma/Django_dummy_application.git'
             }
         }
-        step("list_all_files"){
+        step('list_all_files') {
             step {
                 sh 'tree'
             }
