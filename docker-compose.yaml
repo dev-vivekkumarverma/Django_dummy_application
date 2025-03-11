@@ -7,9 +7,13 @@ services:
       - "8000:8000"
     restart: on-failure:2
     volumes:
-      - ./app:/app
+      - cicd_test_jenkins-data:/app
     networks:
       - cicd_test_jenkins-network
 networks:
   cicd_test_jenkins-network:
+    external: true
+
+volumes:
+  cicd_test_jenkins-data:
     external: true
