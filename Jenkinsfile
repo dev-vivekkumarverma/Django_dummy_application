@@ -10,7 +10,7 @@ pipeline {
         }
         step('list_all_files') {
             step {
-                sh 'tree'
+                sh 'ls'
             }
         }
         stage('Install Dependencies') {
